@@ -8,7 +8,7 @@ Driven by the urgent demand for flood monitoring, water resource management and 
 
 
 ## :star: Introduction & Graphical abstract
-![GA](https://www.mdpi.com/remotesensing/remotesensing-13-03122/article_deploy/html/images/remotesensing-13-03122-ag.png)
+![GA](https://github.com/Jack-bo1220/MSResNet-via-SSL/blob/master/GA.tif)
 
 
 ## :heavy_check_mark: Citation
