@@ -11,6 +11,34 @@ Driven by the urgent demand for flood monitoring, water resource management and 
 ![GA](https://github.com/Jack-bo1220/MSResNet-via-SSL/blob/master/GA.tif)
 
 
+## :large_blue_diamond: Training
+- Download the code we released and then configure the python (Python 3.7) and deep learning environment (Pytorch 1.7.1).
+
+    ~~~console
+    git clone https://github.com/Jack-bo1220/MSResNet-via-SSL.git
+    ~~~
+- Prepare the training dataset, including images and the corresponding binary ground truth labels (distinguish between water and non water).
+- Add the file path of training dataset images (**_dir_img_**) and labels (**_dir_mask_**) to the training script (**_train.py, line 17-18_**). In addition, if you need to use our proposed self-supervised learning method, you also need to add the file path of the unlabeled images to the **_./utils/dataset_2.py, line 60_**.
+- The **_in_channels_** of our proposed MSResNet (**_./network/MSResNet.py, line 139_**) needs to be changed according to the number of bands of the training data. (default is 3)
+- Run training script.
+    ```
+    python train.py -e $max_epoch -b $batch_size -l $learning_rate -f $pretrained_weights
+    ```
+- Add the file path of the validation dataset and inferencing results in the corresponding position in the validation script (**_predict_fwiou.py, line 107 117 163 166_**), so as to select the optimal model according to the performance of the validation dataset during the training process.
+
+
+## :large_orange_diamond: Testing
+- Download the [pretrained model](https://pan.baidu.com/s/1EPAWAF6gIc_FvWi8n_TOdA) (extraction code: 2020) we released or train own dataset to get the appropriate inference weight. （The pretrained model is trained by the 2020 Gaofen Challenge water-body segmentation dataset including RGB bands.）
+- Run testing script.
+    ```
+    python predict.py -m $model_checkpoint -i $input_dir -o $output_dir
+    ```
+- Add the file path of inference results (**_path1_**) and test dataset labels (**_path2_**) in **_FWIoU2.py, line 54 56_**. Test segmentation accuracy. （optional）
+    ```
+    python FWIoU2.py
+    ```
+
+
 ## :heavy_check_mark: Citation
 If you find our source code helpful in your work, please cite the following papers:
 
